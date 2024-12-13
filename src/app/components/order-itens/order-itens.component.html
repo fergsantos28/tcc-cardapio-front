@@ -1,0 +1,22 @@
+<main>
+  <h1>Historico de pedidos da mesa</h1> 
+
+  <section class="orderItems">
+    @for (item of historico; track item){
+      <div class="orderItem">
+        <div class="texts">
+          <h4>{{item.nome_cliente}}</h4>
+          <p>Pedido(s):
+            @for(produto of item.produtos; track produto){
+              <span>{{produto.nome_produto}}{{ $last ? '' : ', ' }}</span>
+            }
+          </p>
+          <p>Total: R$ {{item.valor_total}}</p>
+       
+        </div>       
+      </div>     
+      
+    }
+    
+  </section>
+</main>

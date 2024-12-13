@@ -1,0 +1,91 @@
+/* Container principal */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Cabeçalho da tabela */
+.table thead tr {
+  background-color: #4CAF50; /* Verde elegante */
+  color: #ffffff;
+  text-align: left;
+}
+
+.table th, 
+.table td {
+  padding: 12px 20px;
+  text-align: left;
+}
+
+/* Estilo das linhas */
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternância de cores */
+}
+
+.table tbody tr:hover {
+  background-color: #d9f9d6; /* Realce ao passar o mouse */
+}
+
+/* Imagem */
+.table td img {
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões */
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.edit-button, 
+.clear-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background-color: #FFC107; /* Amarelo */
+  color: #ffffff;
+}
+
+.edit-button:hover {
+  background-color: #FFCA2C;
+}
+
+.clear-button {
+  background-color: #F44336; /* Vermelho */
+  color: #ffffff;
+}
+
+.clear-button:hover {
+  background-color: #E53935;
+}
+
+/* Estilo da seção de carregamento */
+.is-loading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 20px 0;
+}

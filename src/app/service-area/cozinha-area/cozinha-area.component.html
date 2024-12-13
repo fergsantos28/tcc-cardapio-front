@@ -1,0 +1,59 @@
+<nav class="navbar">
+    <h2>Cozinha</h2>
+    <div>
+        <button class="logout-button" (click)="servico()">Área Serviço</button>
+        <button class="logout-button" (click)="cardapio()">Cardápio</button>
+        
+    </div>
+    <button class="logout-button" (click)="logout()">Logout</button>
+</nav>
+
+<main class="content">
+    <section class="table-selection">
+        <h3>Escolha a Mesa</h3>
+        <button type="button" *ngFor="let mesa of mesas;" [ngClass]="{'selected': mesa===selectedTable}"
+            (click)="alterHistory(mesa)">Mesa {{mesa}}</button>
+    </section>
+
+    <section class="orders-view">
+        <h3>Pedidos da Mesa Selecionada</h3>
+        @for (item of historico; track item){
+        <div class="orderItem">
+            <div>
+                <p>Cliente: {{item.nome_cliente}}</p>
+                <p>Pedido(s):
+                    @for(produto of item.produtos; track produto){
+                    <span>{{produto.nome_produto}}{{ $last ? '' : ', ' }}</span>
+                    }
+                </p>
+                <p>Total: R$ {{item.valor_total}}</p>
+            </div>
+            <div class="containerButtuns">
+                <button type="button" class="action" (click)="alterarStatus(item.pedidoId, 'Preparando')"
+                    *ngIf="item.statusPedido==='ativo'">Iniciar Preparo</button>
+
+
+                    <button type="button" class="sendWhatsAppMessage" (click)="statusPorZap(item)" *ngIf="item.telefone && item.statusPedido!=='ativo'" >Informar Status por WhatsApp ({{item.statusPedido}})</button>
+                <span *ngIf="item.statusPedido==='Preparando'">
+                    <button type="button" class="warning" (click)="alterarStatus(item.pedidoId, 'ativo')">corrigir -> Não começaram</button>
+
+
+                    <button type="button" class="actionWorking" (click)="alterarStatus(item.pedidoId, 'Pronto')">Está pronto</button>
+                </span>
+
+                <span *ngIf="item.statusPedido==='Pronto'">
+                    <button type="button" class="warning" (click)="alterarStatus(item.pedidoId, 'Preparando')">corrigir-> Ainda preparando</button>
+                    <button type="button" class="sendWhatsAppMessage">Pronto</button>
+                </span>
+
+                <button type="button" class="paid" *ngIf="item.statusPedido==='pago'">Pago</button>
+
+
+            </div>
+
+        </div>
+        }
+    </section>
+
+
+</main>

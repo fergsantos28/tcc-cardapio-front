@@ -1,0 +1,186 @@
+main {
+
+  header {
+    padding: 50px;
+    background-image: url("../../assets/restaurante/bg.png");
+    display: flex;
+    justify-content: center;
+
+    .iconContainer {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .icon {
+      font-size: 25px;
+      color: white;
+      cursor: pointer;
+
+
+      border: 1px solid white;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+
+    .infos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        width: 100%;
+        max-width: 150px;
+        border-radius: 50%;
+      }
+
+      .texts {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        gap: 5px;
+
+        .time {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: darkgreen;
+          border-radius: 5px;
+          height: 30px;
+          padding: 15px;
+        }
+      }
+
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+    padding-bottom: 150px;
+    .menuItems {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 200px;
+
+      .menuItem {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+
+        .texts {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          h2 {
+            color: darkgreen;
+          }
+
+          p {
+            color: gray;
+
+            &:nth-child(3) {
+              font-weight: bold;
+              margin-top: 15px;
+              display: flex;
+              justify-content: space-between;
+
+              i {
+                font-size: 20px;
+                background-color: #132740;
+                color: white;
+                padding: 5px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        img {
+          width: 100%;
+          max-width: 120px;
+          height: 120px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+
+    i {
+      margin-left: 5px;
+      font-size: 18px;
+    }
+
+    .cart,
+    .orders {
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      background-color: indianred;
+    }
+
+    .orders {
+      background-color: darkgreen;
+    }
+  }
+
+
+
+
+}
+
+
+.mesa {
+  background-color: #007bff;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  padding-top: 30%;
+  color: white;
+  border-radius: 8px;
+
+}
+
+
+.mesas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  font-size: 3em;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }

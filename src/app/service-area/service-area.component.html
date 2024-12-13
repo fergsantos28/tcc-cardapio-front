@@ -1,0 +1,47 @@
+<nav class="navbar">
+  <h2>Área de Serviço</h2>
+<div>
+  <button class="logout-button" (click)="cozinha()">Cozinha</button>
+  <button class="logout-button" (click)="cardapio()">Cardápio</button>
+  <button class="logout-button" (click)="cadastrarProdutos()">Cadastrar Produto</button>
+</div>
+
+  <button class="logout-button" (click)="logout()">Logout</button>
+</nav>
+
+<main class="content">
+  <section class="table-selection">
+    <h3>Escolha a Mesa</h3>    <button type="button"  *ngFor="let mesa of mesas;"  [ngClass]="{'selected': mesa===selectedTable}" (click)="alterHistory(mesa)">Mesa {{mesa}}</button>
+  </section>
+
+  <section class="orders-view">
+    <h3>Pedidos da Mesa Selecionada</h3>
+    @for (item of historico; track item){
+      <div class="orderItem">
+        <div>
+         
+          <p>Telefone: {{item.telefone}}</p>
+          <p>Cliente: {{item.nome_cliente}}</p>
+          <p>Pedido(s):
+              @for(produto of item.produtos; track produto){
+              <span>{{produto.nome_produto}}{{ $last ? '' : ', ' }}</span>
+              }
+          </p>
+          <p>Total: R$ {{item.valor_total}}</p>
+      </div>
+      <div>
+          <button type="button"  class="action"  (click)="alterarStatus(item.pedidoId, 'pago')" *ngIf="item.statusPedido!=='pago'">Pagar</button>
+          <button type="button"  class="paid" (click)="alterarStatus(item.pedidoId, 'ativo')"  *ngIf="item.statusPedido==='pago'">Pago</button>
+          
+          <button type="button" class="zap" (click)="comprovantePorZap(item)" *ngIf="item.telefone" >Comprovante por Zap</button>
+          
+
+      </div>
+      </div>
+    }
+  </section>
+
+  <section class="actions" (click)="deleteHistory()">
+    <button class="clear-button">Limpar Pedidos</button>
+  </section>
+</main>

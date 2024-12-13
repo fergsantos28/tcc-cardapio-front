@@ -1,0 +1,56 @@
+<main>
+  <header>
+    <div class="iconContainer">
+      <i class="pi pi-th-large icon" (click)="cozinha()"></i>
+      <i class="pi pi-desktop icon" (click)="servico()"></i>
+      <i class="pi pi-sign-out icon" (click)="goToLogin()"></i>
+    </div>
+
+    <section class="infos">
+      <img src="../../assets/restaurante/hamb-1.png" alt="">
+      <div class="texts">
+        <h1>Red Burguer</h1>
+        <p>Rua dev sucesso, 12, Campo Grande, MS</p>
+        <p class="time">Seg á Dom - 18:00 as 22:00</p>
+      </div>
+    </section>
+  </header>
+
+  <section class="menu" *ngIf="mesaId">
+    <h2>Conheça nosso menu</h2>
+    <section class="menuItems">
+      @for (item of Itens; track item){
+      <div class="menuItem">
+        <img 
+        [src]="apiUrl +'storage/' +item.imagem" 
+        alt="" 
+        onerror="this.src='../../assets/restaurante/logo.png';"
+      />
+        <div class="texts">
+          <h3>{{item.titulo_produto}}</h3>
+          <p>{{item.descricao}}</p>
+          <p>R$ {{item.valor}} <i class="pi pi-cart-plus" (click)="addToCart(item)"></i></p>
+        </div>
+      </div>
+      }
+    </section>
+  </section>
+  <section class="menu" *ngIf="!mesaId">
+    <h2>Selecione uma mesa</h2>
+    <section class="mesas">
+      @for (mesa of mesas; track mesa){
+      <div class="mesa" (click)="irParaMesa(mesa)">
+        {{mesa}}
+      </div>
+      }
+    </section>
+  </section>
+  <footer *ngIf="mesaId" class="footer">
+    <div class="cart" (click)="openCart()">
+      ({{cartCounter}}) Veja seu carrinho <i class="pi pi-shopping-cart"></i>
+    </div>
+    <div class="orders" (click)="openOrders()">
+      Pedidos da mesa <i class="pi pi-history"></i>
+    </div>
+  </footer>
+</main>

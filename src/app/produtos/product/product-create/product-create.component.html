@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <h2>Cadastro de Produtos</h2>
+  <div>
+    <button class="logout-button" (click)="servico()">Área Serviço</button>
+    <button class="logout-button" (click)="cardapio()">Cardápio</button>
+  </div>
+  <button class="logout-button" (click)="logout()">Logout</button>
+</nav>
+<form>
+  <label>Nome do Produto:</label>
+  <input type="text" id="titulo_produto" [(ngModel)]="produto.titulo_produto" placeholder="Nome do Produto" name="titulo" required>
+  <label>Descrição do Produto:</label>
+  <textarea id="descricao" [(ngModel)]="produto.descricao" name="descricao" placeholder="Descrição do produto"
+    required></textarea>
+  <label>Valor:</label>
+  <input type="text" id="valor" [(ngModel)]="produto.valor" placeholder="Preço R$:" name="valor" required>
+  
+  <div class="file-upload-container">
+    
+    <div class="file-upload-wrapper" (click)="fileInput.click()">
+      <span class="file-upload-text">Escolha uma imagem</span>
+      <input type="file" id="imagem" #fileInput (change)="onFileChange($event)">
+      <span class="file-upload-icon">📷</span>
+    </div>
+    
+    <div class="preview-image-container" *ngIf="previewImage">
+      <img [src]="previewImage" alt="Pré-visualização da imagem">
+    </div>
+  </div>
+  <button type="submit" (click)="criarProduto()"
+    [disabled]="!previewImage || !produto.valor || !produto.descricao || !produto.titulo_produto">Salvar Produto</button>
+  <div class="errors" *ngIf="!previewImage || !produto.valor || !produto.descricao || !produto.titulo_produto">
+    <small *ngIf=" !produto.titulo_produto"><br>Preencha título</small>
+    <small *ngIf="!produto.descricao "><br> Preencha descrição</small>
+    <small *ngIf=" !produto.valor"><br> Preencha Valor</small>
+    <small *ngIf="!previewImage "> <br>Selecione Imagem</small>
+  </div>
+</form>

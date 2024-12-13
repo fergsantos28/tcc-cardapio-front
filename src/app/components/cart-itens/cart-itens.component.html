@@ -1,0 +1,51 @@
+<main>
+  <div class="mainContainer">
+    <h1>Seu carrinho</h1>
+    <section class="cartItems">
+      @for (item of cart; track item){
+        <div class="cartItem">
+          <img 
+          class="imgCard"
+          src="../../assets/restaurante/{{item.img}}.png" 
+          alt="" 
+          onerror="this.src='../../assets/restaurante/logo.png';"
+        />
+          <div class="texts">
+            <h4>{{item.titulo_produto}}</h4>
+            <p>(Quantidade: {{item.quantity}})</p>
+            <p>R$ {{item.valor * 1 * item.quantity}}</p>
+          </div>
+          <div class="addOurRemove">
+            
+            <div class="actions warningText" (click)="removeItem(item)">
+              Remover <i class="pi pi-minus-circle"></i>
+            </div>
+          </div>
+         
+        </div>
+      }
+    </section>
+
+
+      <section class="name">
+        <label for="name">Nome de quem realizou o pedido</label>
+        <input type="text" id="name" placeholder="Nome" [(ngModel)]="this.nameUser">
+        <small *ngIf="this.nameUser.length===0" class="warningText"> Informe Nome</small>
+      </section>
+
+      <section class="name">
+        <label for="phone">Telefone</label>
+        <input type="text" id="phone" placeholder="Telefone" [(ngModel)]="this.telefone">
+        <small *ngIf="!validarNumeroTelefone(this.telefone)" class="warningText"> Telefone Inválido</small>
+      </section>
+
+
+    <section class="cartTotal">
+      <p>Total: R$ {{ calcularTotal() }}</p>
+      <button type="button" (click)="realizarPedido()" [disabled]="!pedidoEValido() || !validarNumeroTelefone(this.telefone)">
+        Finalizar        
+      </button>
+    </section>
+  </div>
+
+</main>

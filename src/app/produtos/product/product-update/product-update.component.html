@@ -1,0 +1,55 @@
+<nav class="navbar">
+    <h2>Atualizar Produto</h2>
+    <div>
+      <button class="logout-button" (click)="servico()">Área Serviço</button>
+      <button class="logout-button" (click)="cardapio()">Cardápio</button>  
+  </div>
+    <button class="logout-button" >Logout</button>
+  </nav>
+
+<div *ngIf="produto" class="product-update-form">
+    
+    <form (ngSubmit)="atualizarProduto()">
+      <label >Nome do Produto:</label>
+        <input type="text" id="titulo_produto" [(ngModel)]="produto.titulo_produto"  placeholder="Nome do Produto" name="titulo_produto" required />
+
+        <label >Descrição do Produto:</label>
+        
+        <input type="text" id="descricao" [(ngModel)]="produto.descricao" placeholder="Descrição do Produto" name="descricao" required />
+
+        <label >Valor:</label>
+
+        <input type="number" id="valor" [(ngModel)]="produto.valor"  placeholder="Preço R$:" name="valor" required>
+  
+        
+        <div class="file-upload-container">
+          
+          <div class="file-upload-wrapper" (click)="fileInput.click()">
+            <span class="file-upload-text">Escolha uma imagem</span>
+            <input type="file" id="imagem" #fileInput (change)="onFileChange($event)">
+            <span class="file-upload-icon">📷</span>
+          </div>
+
+          
+          <div class="preview-image-container" *ngIf="previewImage">
+            <img [src]="previewImage" alt="Pré-visualização da imagem"   onerror="this.src='../../assets/restaurante/logo.png';">
+          </div>
+        </div>
+  
+      <button type="submit"  *ngIf="previewImage && produto.valor && produto.descricao && produto.titulo_produto">Atualizar Produto</button>
+
+
+
+
+
+
+   
+    <div class="errors" *ngIf="!previewImage || !produto.valor || !produto.descricao || !produto.titulo_produto">
+      <small *ngIf=" !produto.titulo_produto"><br>Preencha título</small>
+      <small *ngIf="!produto.descricao "><br> Preencha descrição</small>
+      <small *ngIf=" !produto.valor"><br> Preencha Valor</small>
+      <small *ngIf="!previewImage "> <br>Selecione Imagem</small>
+    </div>
+    </form>
+  </div>
+  

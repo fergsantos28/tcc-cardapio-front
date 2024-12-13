@@ -1,0 +1,48 @@
+<div *ngIf="isLoading">Carregando produtos...</div>
+
+<table
+  *ngIf="!isLoading"
+  class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Imagem</th>
+      <th>Ações</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let produto of produtos">
+      <td>{{ produto.id }}</td>
+      <td>{{ produto.titulo_produto }}</td>
+      <td>{{ produto.descricao }}</td>
+      <td>R$ {{ produto.valor }}</td>
+
+      <td>
+          <img 
+          width="100"
+          [src]="apiUrl + 'storage/' + produto.imagem" 
+          alt="Imagem do produto"
+          onerror="this.src='../../assets/restaurante/logo.png';"
+        />
+      </td>
+
+      <td>
+        
+        <button
+          class="edit-button"
+          (click)="editarProduto(produto.id)">
+          Editar
+        </button>
+        <button
+          class="clear-button"
+          (click)="excluirProduto(produto.id)">
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
